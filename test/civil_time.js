@@ -4,6 +4,10 @@ const {expect} = require('chai');
 describe('CivilTime', () => {
   const datetime = new CivilTime(1989, 6, 4, 22, 55, 55);
 
+  it(`CivilTime.now()`, () => {
+    CivilTime.now();
+  });
+
   for (const [args, expected] of [
     [[], new Date(0)],
     [[new Date(1989, 5, 4)], new Date(1989, 5, 4)],
@@ -57,7 +61,4 @@ describe('CivilTime', () => {
       expect(datetime[field]).equal(expected);
     });
   };
-
-  it('Sub', () => {
-  });
 });
