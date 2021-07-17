@@ -1,11 +1,12 @@
 const chai = require('chai');
 const {
+  Duration,
   MilliSeconds,
   Seconds,
   Minutes,
   Hours,
-  parse,
-  sleep,
+  Days,
+  Weeks,
 } = require('../lib/duration');
 chai.should();
 
@@ -39,14 +40,26 @@ describe('Duration', () => {
     new Hours(10).toString().should.equal('10h');
   });
 
+  it('Days', () => {
+    new Days(10).toMillis().should.equal(10 * 24 * 60 * 60 * 1000);
+    new Days(10).toString().should.equal('10d');
+  });
+
+  it('Weeks', () => {
+    new Weeks(10).toMillis().should.equal(7 * 10 * 24 * 60 * 60 * 1000);
+    new Weeks(10).toString().should.equal('10w');
+  });
+
   it('sleep', async () => {
-    await sleep(new Seconds(1));
+    await (new Seconds(1)).sleep();
   });
 
   it('parse', async () => {
-    parse('20ms').toString().should.equal('20ms');
-    parse('20s').toString().should.equal('20s');
-    parse('20m').toString().should.equal('20m');
-    parse('20h').toString().should.equal('20h');
+    Duration.parse('20ms').should.eql(new MilliSeconds(20));
+    Duration.parse('20s').should.eql(new Seconds(20));
+    Duration.parse('20m').should.eql(new Minutes(20));
+    Duration.parse('20h').should.eql(new Hours(20));
+    Duration.parse('20d').should.eql(new Days(20));
+    Duration.parse('20w').should.eql(new Weeks(20));
   });
 });

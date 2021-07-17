@@ -1,2 +1,4 @@
-module.exports.DateTime = require('./lib/datetime');
-module.exports.Duration = require('./lib/duration');
+module.exports = {
+  CivilTime: require('./lib/civil_time'),
+  ...require('./lib/duration'),
+};

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint lib test",
-    "test": "mocha --reporter spec --bail --check-leaks test/"
+    "test": "mocha --reporter spec --check-leaks test/"
   },
   "repository": {
     "type": "git",
