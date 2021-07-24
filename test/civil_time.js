@@ -1,4 +1,4 @@
-const {CivilTime, Seconds, Minutes, Hours, Days, Weeks} = require('../index');
+const {CivilTime, Duration} = require('../index');
 const {expect} = require('chai');
 
 describe('CivilTime', () => {
@@ -36,11 +36,11 @@ describe('CivilTime', () => {
   }
 
   for (const [addition, expected] of [
-    [new Seconds(10), new CivilTime(1989, 6, 4, 22, 56, 5)],
-    [new Minutes(10), new CivilTime(1989, 6, 4, 23, 5, 55)],
-    [new Hours(10), new CivilTime(1989, 6, 5, 8, 55, 55)],
-    [new Days(10), new CivilTime(1989, 6, 14, 22, 55, 55)],
-    [new Weeks(10), new CivilTime(1989, 8, 13, 22, 55, 55)],
+    [Duration.seconds(10), new CivilTime(1989, 6, 4, 22, 56, 5)],
+    [Duration.minutes(10), new CivilTime(1989, 6, 4, 23, 5, 55)],
+    [Duration.hours(10), new CivilTime(1989, 6, 5, 8, 55, 55)],
+    [Duration.days(10), new CivilTime(1989, 6, 14, 22, 55, 55)],
+    [Duration.weeks(10), new CivilTime(1989, 8, 13, 22, 55, 55)],
   ]) {
     it(`Adding ${addition} to ${datetime}`, () => {
       const actual = datetime.add(addition);
