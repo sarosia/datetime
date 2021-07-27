@@ -18,6 +18,7 @@ describe('CivilTime', () => {
     [[1989, 6, 4, 22], new Date(1989, 5, 4, 22)],
     [[1989, 6, 4, 22, 55], new Date(1989, 5, 4, 22, 55)],
     [[1989, 6, 4, 22, 55, 55], new Date(1989, 5, 4, 22, 55, 55)],
+    [["1989/06/04"], new Date(1989, 5, 4)],
   ]) {
     it(`Create CivilTime with ${args.join(',')}`, () => {
       expect(new CivilTime(...args).toDate()).eql(expected);
@@ -25,7 +26,7 @@ describe('CivilTime', () => {
   }
 
   for (const [args, error] of [
-    [['x'], 'Unsupported arguments for CivilTime(): x'],
+    [[{}], 'Unsupported arguments for CivilTime(): [object Object]'],
     [[1, 'x'], 'CivilTime accepts list of numbers, but got 1,x.'],
   ]) {
     it(`Throw an error when new CivilTime with ${args.join(',')}`, () => {
